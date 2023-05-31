@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: project4_rails_api_production
-  username: project4_rails_api
-  password: <%= ENV["PROJECT4_RAILS_API_DATABASE_PASSWORD"] %>
+  url: <%= ENV["MY_APP_DATABASE_URL"] %>
