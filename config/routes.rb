@@ -4,18 +4,22 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  get "users", to: "users#index"
   post "users/login", to: "users#login"
-  post "users", to: "users#create"
   get "users/auto_login", to: "users#auto_login"
+
+
   get "users/new", to: "users#new", as: :new_user
-  
   get "users/:id/edit", to: "users#edit", as: :edit_user
 
-  get "users/:id", to: "users#show", as: :user
-  patch "users/:id", to: "users#update"
+  get "users/:id/jobs/new", to: "jobs#new", as: :new_job
+  get "users/:id/jobs/:id/edit", to: "jobs#edit", as: :edit_job
 
-  delete "users/:id", to: "users#destroy"
+  resources :users do 
+    resources :jobs
+  end
 
-  resource :jobs
+  get "jobs", to: "jobs#all"
+ 
+
+
 end
