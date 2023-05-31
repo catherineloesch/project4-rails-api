@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
     before_action :set_job, only: [:show, :edit, :update, :destroy]
+    before_action :authorized, only: [:create, :destroy, :update]
 
     def index
         @user = User.find(params[:user_id])
@@ -12,18 +13,25 @@ class JobsController < ApplicationController
         render json: @jobs
     end
 
+    def one
+      @job = Job.find(params[:id])
+      render json: @job
+
+    end
+
     def show
         render json: @job
     end
 
-    def new
-        @job = Job.new
-        render json: @job
-    end
+    # def new
+    #     @job = Job.new
+    #     render json: @job
+    # end
 
 
     def create
-    @job = Job.create(job_params)
+      @user = User.find(params[:user_id])
+      @job = @user.jobs.create(job_params)
       if @job.valid?
         render json: @job
       else
@@ -31,9 +39,9 @@ class JobsController < ApplicationController
       end
     end
 
-    def edit
-        render json: @job
-    end
+    # def edit
+    #     render json: @job
+    # end
 
     def update
         if @job.update(job_params)
@@ -54,7 +62,7 @@ class JobsController < ApplicationController
     end
 
     def job_params
-        params.require(:job).permit(:title, :description, :type, :pay, :start_date, :start_time, :end_date, :end_time, :user_id)
+        params.require(:job).permit(:title, :description, :pay, :start_date, :start_time, :end_date, :end_time, :user_id, :job_type, :location)
     end
 
 end

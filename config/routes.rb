@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
 
   get "jobs", to: "jobs#all"
+  get "jobs/:id", to: "jobs#one"
  
 
 

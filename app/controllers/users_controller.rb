@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :authorized, only: [:auto_login]
+    before_action :authorized, only: [:auto_login, :update, :destroy]
     before_action :set_user, only: [:show, :edit, :update, :destroy]
 
     def index
@@ -8,15 +8,14 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.find(params[:id])
         @jobs = @user.jobs
         render json: @user
     end
     
-    def new
-        @user = User.new
-        render json: @user
-    end
+    # def new
+    #     @user = User.new
+    #     render json: @user
+    # end
 
 
     # Register new user
@@ -44,9 +43,9 @@ class UsersController < ApplicationController
     end
 
 
-    def edit
-        render json: @user
-    end
+    # def edit
+    #     render json: @user
+    # end
 
     def update
         if @user.update(user_params)
@@ -64,7 +63,7 @@ class UsersController < ApplicationController
 
     private
     def user_params
-        params.permit(:username, :password, :age, :display_name, :description)
+        params.permit(:username, :password, :age, :display_name, :description, :email, :address)
     end
     def set_user
         @user = User.find(params[:id])
