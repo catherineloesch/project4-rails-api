@@ -48,8 +48,6 @@ class JobsController < ApplicationController
         render json: @job
     end
 
-    
-
     private
     def set_job
         @job = User.find(params[:user_id]).jobs.find(params[:id])

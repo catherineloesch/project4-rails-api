@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   post "users/login", to: "users#login"
   get "users/auto_login", to: "users#auto_login"
 
-
   get "users/new", to: "users#new", as: :new_user
   get "users/:id/edit", to: "users#edit", as: :edit_user
 
