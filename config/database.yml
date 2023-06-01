@@ -81,4 +81,4 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV["postgres://hfrrqahnioirwu:343e44b6d8f8eb20f8a08963a09339297ad079bf77647544bc7fc799b778b1e5@ec2-52-215-209-64.eu-west-1.compute.amazonaws.com:5432/d3opp6spt70iqn"] %>
+  url: "postgres://hfrrqahnioirwu:343e44b6d8f8eb20f8a08963a09339297ad079bf77647544bc7fc799b778b1e5@ec2-52-215-209-64.eu-west-1.compute.amazonaws.com:5432/d3opp6spt70iqn"
