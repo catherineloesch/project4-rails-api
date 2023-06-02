@@ -25,7 +25,7 @@ class UsersController < ApplicationController
         token = encode_token({user_id: @user.id})
         render json: {user: @user, token: token}
       else
-        render json: {error: "Invalid username or password"}
+        render json: @user.errors.map { |error| error.full_message}
       end
     end
     # Log in existing userf
