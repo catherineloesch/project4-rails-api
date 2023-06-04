@@ -6,4 +6,6 @@ class User < ApplicationRecord
     validates :password, length: { in: 2..20 }
 
     has_many :jobs, dependent: :destroy
+    has_many :applications
+    has_many :jobs, through: :applications
 end

@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   get "users/:id/jobs/:id/edit", to: "jobs#edit", as: :edit_job
 
   resources :users do 
-    resources :jobs
+    resources :jobs do
+      resources :applications
+    end
   end
 
   get "jobs", to: "jobs#all"
